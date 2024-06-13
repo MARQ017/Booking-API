@@ -8,6 +8,7 @@
   "author": "Muhammad Abdul Rehman Qureshi",
   "license": "ISC",
   "description": "Booking APIs",
+  "type": "module",
   "dependencies": {
     "express": "^4.19.2",
     "sequelize": "^6.37.3"
