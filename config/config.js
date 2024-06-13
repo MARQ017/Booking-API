@@ -1,24 +1,25 @@
-const env = process.env.NODE_ENV || "development";
+import dotenv from 'dotenv';
+dotenv.config();
 export default {
   development: {
-    username: "root",
+    username: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_SCHEMA,
-    host: "127.0.0.1",
+    host: process.env.MYSQL_HOST,
     dialect: "mysql",
   },
   test: {
-    username: "root",
+    username: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_SCHEMA,
-    host: "127.0.0.1",
+    host: process.env.MYSQL_HOST,
     dialect: "mysql",
   },
   production: {
-    username: "root",
+    username: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_SCHEMA,
-    host: "127.0.0.1",
+    host: process.env.MYSQL_HOST,
     dialect: "mysql",
   },
 };
