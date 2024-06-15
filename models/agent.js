@@ -1,25 +1,27 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+import { Model, DataTypes } from 'sequelize';
+import bcrypt from 'bcryptjs';
+
+export default (sequelize) => {
   class Agent extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       Agent.hasMany(models.Booking, { foreignKey: 'agent_id' });
       Agent.hasMany(models.User, { foreignKey: 'agent_id' });
     }
   }
+
   Agent.init({
     name: DataTypes.STRING,
-    email: DataTypes.STRING
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Agent',
+    hooks: {
+      beforeCreate: async (agent) => {
+        agent.password = await bcrypt.hash(agent.password, 10);
+      },
+    },
   });
+
   return Agent;
 };
